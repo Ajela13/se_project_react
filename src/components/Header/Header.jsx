@@ -1,0 +1,22 @@
+import "./Header.css";
+import logo from "../../assets/logo.svg";
+import avatar from "../../assets/avatar.png";
+function Header() {
+  return (
+    <div className="header">
+      <img className="header__logo" src={logo} alt="logo" />
+      <p className="header__date-and-location">date and location</p>
+      <button className="header__add-clothes-btn">+ Add clothes</button>
+      <div className="header__user">
+        <p className="header__username">Terrence Tegegne</p>
+        <img
+          src={avatar}
+          alt="Terrence Tegegne avatar"
+          className="header__avatar"
+        />
+      </div>
+    </div>
+  );
+}
+
+export default Header;
