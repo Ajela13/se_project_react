@@ -1,3 +1,10 @@
+.main__temperature {
+  margin-top: 40px;
+  font-family: Cabinet;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.2;
+}
 .main__list {
   display: flex;
   flex-wrap: wrap;
