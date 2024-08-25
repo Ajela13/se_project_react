@@ -1,0 +1,24 @@
+.weatherCard {
+  max-width: 1360px;
+  height: 80px;
+  border-radius: 12px;
+  position: relative;
+}
+
+.weatherCard__temperature {
+  position: absolute;
+  font-family: Cabinet;
+  font-weight: 700;
+  font-size: 36px;
+  top: 20px;
+  left: 16px;
+  margin: 0;
+}
+
+.weatherCard__image {
+  object-fit: cover;
+  width: 100%;
+  height: 80px;
+  object-position: right;
+  border-radius: 12px;
+}
