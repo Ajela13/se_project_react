@@ -19,7 +19,7 @@
   visibility: visible;
 }
 
-.modal__close {
+.modal__close-preview {
   background-image: url("../../assets/close-preview.svg");
   background-repeat: no-repeat;
   background-color: transparent;
@@ -36,11 +36,13 @@
   background-color: #ffffff;
   position: relative;
   border-radius: 16px;
-  padding: 0;
   max-width: 496px;
   width: 100%;
 }
 
+.modal__content_type_image {
+  padding: 0;
+}
 .modal__image {
   width: 100%;
   border-top-left-radius: 16px;
