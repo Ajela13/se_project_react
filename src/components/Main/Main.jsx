@@ -6,7 +6,7 @@ function Main({ weatherData, handleCardClick }) {
   return (
     <div className="main">
       <div className="main__content">
-        <WeatherCard temperature={weatherData.temperature} />
+        <WeatherCard weatherData={weatherData} />
         <p className="main__temperature">
           Today is {weatherData.temperature}&deg;F / You may want to wear:
         </p>
