@@ -39,7 +39,7 @@ function App() {
         setWeatherData(filterData);
       })
       .catch(console.error);
-  });
+  }, []);
 
   return (
     <>
