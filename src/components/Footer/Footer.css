@@ -2,4 +2,17 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  font-family: Cabinet;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.2;
+  margin-top: 171px;
+}
+
+.footer__copyrigth {
+  margin: 0;
+}
+
+.footer__production {
+  margin: 0;
 }
