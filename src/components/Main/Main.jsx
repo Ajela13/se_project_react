@@ -4,7 +4,7 @@ import ItemCard from "../ItemCard/ItemCard";
 import { defaultClothingItems } from "../../utils/constants";
 function Main({ weatherData, handleCardClick }) {
   return (
-    <div className="main">
+    <main className="main">
       <div className="main__content">
         <WeatherCard weatherData={weatherData} />
         <p className="main__temperature">
@@ -20,13 +20,13 @@ function Main({ weatherData, handleCardClick }) {
                 <ItemCard
                   key={item._id}
                   item={item}
-                  OnCardClick={handleCardClick}
+                  onCardClick={handleCardClick}
                 />
               );
             })}
         </ul>
       </div>
-    </div>
+    </main>
   );
 }
 
