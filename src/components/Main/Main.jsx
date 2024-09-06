@@ -7,7 +7,6 @@ import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperature
 
 function Main({ weatherData, handleCardClick }) {
   const { currentTemperature } = useContext(CurrentTemperatureUnitContext);
-  console.log(currentTemperature);
   return (
     <main className="main">
       <div className="main__content">

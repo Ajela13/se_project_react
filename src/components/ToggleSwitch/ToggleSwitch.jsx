@@ -3,7 +3,6 @@ import "./ToggleSwitch.css";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 
 function ToggleSwitch() {
-  console.log("toggle");
   const { currentTemperature, handleToggleSwitchChange } = useContext(
     CurrentTemperatureUnitContext
   );
