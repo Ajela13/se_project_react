@@ -27,7 +27,6 @@ function AddItemModal({ handleCloseClick, isOpen, activeModal, onAddItem }) {
     });
 
     handleCloseClick();
-    console.log(e.target);
   };
 
   return (
