@@ -24,6 +24,12 @@ function App() {
 
   const [selectedCard, setSelectedCard] = useState({});
 
+  const [clothingItems, setClothingItems] = useState([]);
+
+  const handleAddItemSubmit = ({ name, weather, imageUrl }) => {
+    console.log(name, weather, imageUrl);
+  };
+
   const handleCardClick = (card) => {
     setActiveModal("preview");
     setSelectedCard(card);
@@ -41,10 +47,6 @@ function App() {
     currentTemperature === "F"
       ? setCurrentTemperatureUnit("C")
       : setCurrentTemperatureUnit("F");
-  };
-
-  const onAddItem = (e) => {
-    console.log(e);
   };
 
   useEffect(() => {
@@ -73,7 +75,10 @@ function App() {
                 />
               }
             />
-            <Route path="/profile" element={<Profile />} />
+            <Route
+              path="/profile"
+              element={<Profile handleCardClick={handleCardClick} />}
+            />
           </Routes>
 
           <Footer />
@@ -81,7 +86,7 @@ function App() {
         <AddItemModal
           handleCloseClick={closeActiveModal}
           isOpen={activeModal === "add-clothes"}
-          onAddItem={onAddItem}
+          onAddItem={handleAddItemSubmit}
         />
         <ItemModal
           activeModal={activeModal}
