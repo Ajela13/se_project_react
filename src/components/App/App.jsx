@@ -10,7 +10,7 @@ import Profile from "../Profile/Profile";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
-import { getItems, addItems } from "../../utils/api";
+import { getItems, addItems, deleteItems } from "../../utils/api";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -28,12 +28,20 @@ function App() {
   const [clothingItems, setClothingItems] = useState([]);
 
   const handleAddItemSubmit = ({ name, weather, imageUrl }) => {
-    console.log(name, imageUrl, weather);
     addItems(name, imageUrl, weather)
       .then((newItem) => {
-        console.log(newItem);
         setClothingItems([newItem, ...clothingItems]);
 
+        closeActiveModal();
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const handleDeleteItem = (item) => {
+    console.log(item);
+    deleteItems(item._id)
+      .then(() => {
+        setClothingItems(clothingItems.filter((card) => card._id !== item._id));
         closeActiveModal();
       })
       .catch((err) => console.log(err));
@@ -71,7 +79,6 @@ function App() {
     getItems()
       .then((data) => {
         setClothingItems(data);
-        console.log(clothingItems);
       })
       .catch(console.error);
   }, []);
@@ -116,6 +123,7 @@ function App() {
           activeModal={activeModal}
           handleCloseClick={closeActiveModal}
           card={selectedCard}
+          handleDeleteItem={handleDeleteItem}
         />
       </CurrentTemperatureUnitContext.Provider>
     </div>
