@@ -106,6 +106,7 @@ function App() {
               element={
                 <Profile
                   handleCardClick={handleCardClick}
+                  handleAddClick={handleAddClick}
                   clothingItems={clothingItems}
                 />
               }
