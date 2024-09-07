@@ -34,6 +34,7 @@ function App() {
 
         closeActiveModal();
       })
+      .then(handleCloseClick)
       .catch((err) => console.log(err));
   };
 

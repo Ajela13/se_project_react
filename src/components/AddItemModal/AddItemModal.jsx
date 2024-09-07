@@ -25,8 +25,6 @@ function AddItemModal({ handleCloseClick, isOpen, activeModal, onAddItem }) {
       imageUrl,
       weather,
     });
-
-    handleCloseClick();
   };
 
   return (
