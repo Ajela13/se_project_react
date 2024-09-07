@@ -10,7 +10,7 @@ import Profile from "../Profile/Profile";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
-import { getItems } from "../../utils/api";
+import { getItems, addItems } from "../../utils/api";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -28,7 +28,15 @@ function App() {
   const [clothingItems, setClothingItems] = useState([]);
 
   const handleAddItemSubmit = ({ name, weather, imageUrl }) => {
-    console.log(name, weather, imageUrl);
+    console.log(name, imageUrl, weather);
+    addItems(name, imageUrl, weather)
+      .then((newItem) => {
+        console.log(newItem);
+        setClothingItems([newItem, ...clothingItems]);
+
+        closeActiveModal();
+      })
+      .catch((err) => console.log(err));
   };
 
   const handleCardClick = (card) => {
