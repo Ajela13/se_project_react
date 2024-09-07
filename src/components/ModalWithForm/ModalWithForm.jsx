@@ -1,5 +1,5 @@
 import "./ModalWithForm.css";
-function ModalWithFrom({
+function ModalWithForm({
   children,
   buttonText,
   title,
@@ -27,4 +27,4 @@ function ModalWithFrom({
   );
 }
 
-export default ModalWithFrom;
+export default ModalWithForm;
