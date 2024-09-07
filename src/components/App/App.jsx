@@ -38,7 +38,6 @@ function App() {
   };
 
   const handleDeleteItem = (item) => {
-    console.log(item);
     deleteItems(item._id)
       .then(() => {
         setClothingItems(clothingItems.filter((card) => card._id !== item._id));
