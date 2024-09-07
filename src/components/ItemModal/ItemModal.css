@@ -33,7 +33,7 @@
   right: 28px;
 }
 
-.modal__content {
+.modal__preview-content {
   background-color: #ffffff;
   position: relative;
   border-radius: 16px;
@@ -52,6 +52,24 @@
   max-height: 498px;
 }
 
+.modal__caption {
+  margin: 0;
+}
 .modal__footer {
   margin: 20px 0 0 32px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal__delete {
+  border: none;
+  background-color: #ffffff;
+  align-self: flex-start;
+  margin-top: 20px;
+  margin-right: 32px;
+  font-family: Cabinet;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #ff4d00;
 }
