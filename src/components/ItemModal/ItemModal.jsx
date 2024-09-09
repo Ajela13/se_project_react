@@ -1,11 +1,12 @@
+import Modal from "../Modal/Modal";
 import "./ItemModal.css";
 
-function ItemModal({ activeModal, card, handleCloseClick, handleDeleteItem }) {
+function ItemModal({ isOpen, card, onClose, handleDeleteItem }) {
   return (
-    <div className={`modal ${activeModal === "preview" && "modal_opened"}`}>
+    <Modal name="preview" onClose={onClose} isOpen={isOpen}>
       <div className="modal__preview-content modal__content_type_image">
         <button
-          onClick={handleCloseClick}
+          onClick={onClose}
           type="button"
           className="modal__close-preview"
         ></button>
@@ -26,7 +27,7 @@ function ItemModal({ activeModal, card, handleCloseClick, handleDeleteItem }) {
           </button>{" "}
         </div>
       </div>
-    </div>
+    </Modal>
   );
 }
 
