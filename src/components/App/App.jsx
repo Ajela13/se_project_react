@@ -121,10 +121,10 @@ function App() {
           onAddItem={handleAddItemSubmit}
         />
         <ItemModal
-          activeModal={activeModal}
-          handleCloseClick={closeActiveModal}
+          isOpen={activeModal == "preview"}
           card={selectedCard}
           handleDeleteItem={handleDeleteItem}
+          onClose={closeActiveModal}
         />
       </CurrentTemperatureUnitContext.Provider>
     </div>
