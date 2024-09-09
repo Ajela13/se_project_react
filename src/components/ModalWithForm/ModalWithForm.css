@@ -1,23 +1,11 @@
-.modal {
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid #0000004d;
-  font-family: Cabinet;
-  font-weight: 700;
-  line-height: 20px;
-  visibility: hidden;
+.modal__content {
+  background-color: #ffffff;
+  position: relative;
+  border-radius: 20px;
+  padding: 28px 28px 36px;
+  max-width: 496px;
+  width: 100%;
 }
-
-.modal_opened {
-  visibility: visible;
-}
-
 .modal__title {
   margin: 0;
   font-size: 16px;
@@ -33,15 +21,6 @@
   position: absolute;
   top: 20px;
   right: 28px;
-}
-
-.modal__content {
-  background-color: #ffffff;
-  position: relative;
-  border-radius: 20px;
-  padding: 28px 28px 36px;
-  max-width: 496px;
-  width: 100%;
 }
 
 .modal__form {
