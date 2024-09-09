@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-function AddItemModal({ handleCloseClick, isOpen, activeModal, onAddItem }) {
+function AddItemModal({ isOpen, onAddItem, handleCloseClick }) {
   const [name, setName] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [weather, setWeather] = useState("");
@@ -31,10 +31,9 @@ function AddItemModal({ handleCloseClick, isOpen, activeModal, onAddItem }) {
     <ModalWithForm
       title="New garment"
       buttonText="Add garment"
-      activeModal={activeModal}
-      handleCloseClick={handleCloseClick}
       isOpen={isOpen}
       onSubmit={handleSubmit}
+      onClose={handleCloseClick}
     >
       <label htmlFor="name" className="modal__label">
         Name
