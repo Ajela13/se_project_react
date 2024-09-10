@@ -23,7 +23,11 @@ function DeleteConfirmationModal({ handleDeleteItem, card, onClose, isOpen }) {
         >
           Yes, delete item
         </button>
-        <button className="modal__confirmation-cancel" type="button">
+        <button
+          className="modal__confirmation-cancel"
+          type="button"
+          onClick={onClose}
+        >
           Cancel
         </button>
       </div>
