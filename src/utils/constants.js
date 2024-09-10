@@ -63,8 +63,8 @@ export const weatherOptions = [
 ];
 
 export const coordinates = {
-  latitude: 39.186581,
-  longitude: -77.329536,
+  latitude: 4.60971,
+  longitude: -74.08175,
 };
 
 export const APIkey = "d76956ed7d2735964ae0d7ac4906a7d1";
