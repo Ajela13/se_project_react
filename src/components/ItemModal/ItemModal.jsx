@@ -1,7 +1,7 @@
 import Modal from "../Modal/Modal";
 import "./ItemModal.css";
 
-function ItemModal({ isOpen, card, onClose, handleDeleteItem }) {
+function ItemModal({ isOpen, card, onClose, openDeleteConfirmationModal }) {
   return (
     <Modal name="preview" onClose={onClose} isOpen={isOpen}>
       <div className="modal__preview-content modal__content_type_image">
@@ -19,9 +19,7 @@ function ItemModal({ isOpen, card, onClose, handleDeleteItem }) {
           <button
             className="modal__delete"
             type="button"
-            onClick={() => {
-              handleDeleteItem(card);
-            }}
+            onClick={() => openDeleteConfirmationModal(card)}
           >
             Delete item
           </button>{" "}
