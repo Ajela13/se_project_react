@@ -26,6 +26,9 @@ What to Wear is a React + Vite project that helps users decide what to wear base
 - Get Clothing Recommendations: The app will suggest clothing based on whether it is warm, hot, or cold.
 - Manage Wardrobe: Add or remove clothing items using the interface provided.
 
+
+![Preview](https://github.com/user-attachments/assets/aa1270b7-d46a-4c65-bec5-88a4724ce310)
+
 Currently, two official plugins are available:
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
