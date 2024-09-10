@@ -3,6 +3,8 @@ import "./Modal.css";
 
 function Modal({ name, children, onClose, isOpen }) {
   useEffect(() => {
+    if (!isOpen) return;
+
     const handleEscape = (e) => {
       if (e.key === "Escape") {
         onClose();
@@ -10,7 +12,7 @@ function Modal({ name, children, onClose, isOpen }) {
     };
     document.addEventListener("keydown", handleEscape);
     return () => document.removeEventListener("keydown", handleEscape);
-  }, [onClose]);
+  }, [onClose, isOpen]);
 
   const handleOverlay = (e) => {
     if (e.target === e.currentTarget) {
