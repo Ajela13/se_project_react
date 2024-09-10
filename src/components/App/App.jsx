@@ -57,7 +57,7 @@ function App() {
       .then((newItem) => {
         setClothingItems([newItem, ...clothingItems]);
       })
-      .then(closeActiveModal())
+      .then(closeActiveModal)
       .catch((err) => console.log(err));
   };
 
