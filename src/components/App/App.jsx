@@ -56,10 +56,8 @@ function App() {
     addItems(name, imageUrl, weather)
       .then((newItem) => {
         setClothingItems([newItem, ...clothingItems]);
-
-        closeActiveModal();
       })
-      .then(handleCloseClick)
+      .then(closeActiveModal())
       .catch((err) => console.log(err));
   };
 
