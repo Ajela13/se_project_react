@@ -20,7 +20,10 @@ function ModalWithForm({
             <button type="submit" className="modal__submit">
               {buttonText}
             </button>
-            <button hidden={title !== "Log in"} className="modal__redirect">
+            <button
+              hidden={title === "Log in" || title === "register"}
+              className="modal__redirect"
+            >
               {redirectText}
             </button>
           </div>
