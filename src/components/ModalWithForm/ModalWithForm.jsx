@@ -16,9 +16,14 @@ function ModalWithForm({
         <button onClick={onClose} type="button" className="modal__close" />
         <form onSubmit={onSubmit} className="modal__form">
           {children}
-          <button type="submit" className="modal__submit">
-            {buttonText}
-          </button>
+          <div className="modal__submit-buttons">
+            <button type="submit" className="modal__submit">
+              {buttonText}
+            </button>
+            <button hidden={title !== "Log in"} className="modal__redirect">
+              {redirectText}
+            </button>
+          </div>
         </form>
       </div>
     </Modal>
