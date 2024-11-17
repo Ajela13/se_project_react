@@ -8,6 +8,7 @@ import Footer from "../Footer/Footer";
 import ItemModal from "../ItemModal/ItemModal";
 import Profile from "../Profile/Profile";
 import AddItemModal from "../AddItemModal/AddItemModal";
+import LoginModal from "../LoginModal/LoginModal";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 import { getItems, addItems, deleteItems } from "../../utils/api";
@@ -46,6 +47,9 @@ function App() {
     setSelectedCard(card);
   };
 
+  const handleLoginClick = () => {
+    setActiveModal("Login");
+  };
   const handleToggleSwitchChange = () => {
     currentTemperature === "F"
       ? setCurrentTemperatureUnit("C")
@@ -93,7 +97,11 @@ function App() {
         value={{ currentTemperature, handleToggleSwitchChange }}
       >
         <div className="page__content">
-          <Header handleAddClick={handleAddClick} weatherData={weatherData} />
+          <Header
+            handleAddClick={handleAddClick}
+            weatherData={weatherData}
+            handleLoginClick={handleLoginClick}
+          />
           <Routes>
             <Route
               path="/"
@@ -120,7 +128,7 @@ function App() {
           <Footer />
         </div>
         <AddItemModal
-          handleCloseClick={closeActiveModal}
+          onClose={closeActiveModal}
           isOpen={activeModal === "add-clothes"}
           onAddItem={handleAddItemSubmit}
         />
@@ -135,6 +143,10 @@ function App() {
           card={selectedCard}
           handleDeleteItem={handleDeleteItem}
           onClose={closeActiveModal}
+        />
+        <LoginModal
+          onClose={closeActiveModal}
+          isOpen={activeModal == "Login"}
         />
       </CurrentTemperatureUnitContext.Provider>
     </div>
