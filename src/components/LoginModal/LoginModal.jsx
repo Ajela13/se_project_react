@@ -33,10 +33,10 @@ function LoginModal({ isOpen, onClose }) {
       onClose={onClose}
       redirectText="or Sign Up"
     >
-      <label htmlFor="email" className="modal__label">
+      <label htmlFor="login-email" className="modal__label">
         Email
         <input
-          id="email"
+          id="login-email"
           type="email"
           value={email}
           className="modal__input"
@@ -45,10 +45,10 @@ function LoginModal({ isOpen, onClose }) {
         />
       </label>
 
-      <label htmlFor="password" className="modal__label">
+      <label htmlFor="login-password" className="modal__label">
         Password
         <input
-          type="password"
+          type="login-password"
           className="modal__input"
           id="password"
           value={password}
