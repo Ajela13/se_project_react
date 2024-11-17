@@ -31,6 +31,7 @@ function LoginModal({ isOpen, onClose }) {
       isOpen={isOpen}
       //   onSubmit={handleSubmit}
       onClose={onClose}
+      redirectText="or Sign Up"
     >
       <label htmlFor="email" className="modal__label">
         Email
