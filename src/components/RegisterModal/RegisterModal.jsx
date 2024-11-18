@@ -1,51 +1,54 @@
 import { useEffect, useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-function RegisterModal({ isOpen, onClose }) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
-  const [avatar, setAvatar] = useState("");
+function RegisterModal({ isOpen, onClose, handleRegistration }) {
+  const [data, setData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    avatar: "",
+  });
 
-  const handleEmailChange = (e) => setEmail(e.target.value);
-  const handlePasswordChange = (e) => setPassword(e.target.value);
-  const handleNameChange = (e) => setName(e.targer.value);
-  const handleAvatarChange = (e) => setAvatar(e.target.value);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
 
   useEffect(() => {
     if (isOpen) {
       setEmail("");
       setPassword("");
+      setAvatar("");
+      setName("");
     }
   }, [isOpen]);
 
-  //   const handleSubmit = (e) => {
-  //     e.preventDefault();
-  //     // onAddItem({
-  //     //   name,
-  //     //   imageUrl,
-  //     //   weather,
-  //     // });
-  //   };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleRegistration(data);
+  };
 
   return (
     <ModalWithForm
       title="Sign up"
       buttonText="Sign up"
       isOpen={isOpen}
-      //   onSubmit={handleSubmit}
       onClose={onClose}
       redirectText="or Log in"
+      onSubmit={handleSubmit}
     >
       <label htmlFor="signUp-email" className="modal__label">
         Email*
         <input
           id="signUp-email"
           type="email"
-          value={email}
+          value={data.email}
           className="modal__input"
           placeholder="Email"
-          onChange={handleEmailChange}
+          onChange={handleChange}
         />
       </label>
 
@@ -55,9 +58,9 @@ function RegisterModal({ isOpen, onClose }) {
           type="password"
           className="modal__input"
           id="signUp-password"
-          value={password}
+          value={data.password}
           placeholder="Password"
-          onChange={handlePasswordChange}
+          onChange={handleChange}
         />
       </label>
 
@@ -67,9 +70,9 @@ function RegisterModal({ isOpen, onClose }) {
           type="text"
           className="modal__input"
           id="signUp-name"
-          value={name}
+          value={data.name}
           placeholder="Name"
-          onChange={handleNameChange}
+          onChange={handleChange}
         />
       </label>
 
@@ -79,9 +82,9 @@ function RegisterModal({ isOpen, onClose }) {
           type="text"
           className="modal__input"
           id="signUp-avatar"
-          value={avatar}
+          value={data.avatar}
           placeholder="Avatar URL"
-          onChange={handleAvatarChange}
+          onChange={handleChange}
         />
       </label>
     </ModalWithForm>
