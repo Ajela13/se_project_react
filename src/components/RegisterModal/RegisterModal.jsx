@@ -11,18 +11,16 @@ function RegisterModal({ isOpen, onClose, handleRegistration }) {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    console.log(e.target);
     setData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
   };
-
+  console.log(data);
   useEffect(() => {
     if (isOpen) {
-      setEmail("");
-      setPassword("");
-      setAvatar("");
-      setName("");
+      setData({ name: "", email: "", password: "", avatar: "" });
     }
   }, [isOpen]);
 
@@ -45,10 +43,11 @@ function RegisterModal({ isOpen, onClose, handleRegistration }) {
         <input
           id="signUp-email"
           type="email"
-          value={data.email}
+          value={setData.email}
           className="modal__input"
           placeholder="Email"
           onChange={handleChange}
+          name="email"
         />
       </label>
 
@@ -61,6 +60,7 @@ function RegisterModal({ isOpen, onClose, handleRegistration }) {
           value={data.password}
           placeholder="Password"
           onChange={handleChange}
+          name="password"
         />
       </label>
 
@@ -73,6 +73,7 @@ function RegisterModal({ isOpen, onClose, handleRegistration }) {
           value={data.name}
           placeholder="Name"
           onChange={handleChange}
+          name="name"
         />
       </label>
 
@@ -85,6 +86,7 @@ function RegisterModal({ isOpen, onClose, handleRegistration }) {
           value={data.avatar}
           placeholder="Avatar URL"
           onChange={handleChange}
+          name="avatar"
         />
       </label>
     </ModalWithForm>
