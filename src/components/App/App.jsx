@@ -45,6 +45,23 @@ function App() {
       .catch(console.error);
   };
 
+  const handleLogin = ({ email, password }) => {
+    auth
+      .authorize(email, password)
+      .then((res) => {
+        if (res.token) {
+          localStorage.setItem("jwt", res.token);
+          setIsLoggedIn(true);
+          closeActiveModal();
+          navigate("/profile");
+        } else {
+          throw new Error("Authorization token not received");
+        }
+      })
+      .catch((err) => {
+        console.error("Login failed:", err); // Log errors for debugging
+      });
+  };
   const closeActiveModal = () => {
     setActiveModal("");
   };
@@ -115,10 +132,34 @@ function App() {
   useEffect(() => {
     if (location.pathname === "/login") {
       setActiveModal("Login");
+    } else if (location.pathname === "/signup") {
+      setActiveModal("register");
     } else {
       setActiveModal("");
     }
   }, [location]);
+
+  useEffect(() => {
+    const token = localStorage.getItem("jwt");
+
+    if (token) {
+      auth
+        .checkToken(token)
+        .then((userData) => {
+          setIsLoggedIn(true);
+          setUser(userData);
+
+          api.getUserData(token).then((data) => {
+            console.log("User data:", data);
+          });
+        })
+        .catch((err) => {
+          console.error("Token validation failed:", err);
+          setIsLoggedIn(false);
+        });
+    }
+  }, []);
+
   return (
     <div className="page">
       <CurrentTemperatureUnitContext.Provider
@@ -161,6 +202,18 @@ function App() {
                 <LoginModal
                   onClose={closeActiveModal}
                   isOpen={activeModal == "Login"}
+                  handleLogin={handleLogin}
+                />
+              }
+            />
+
+            <Route
+              path="/signup"
+              element={
+                <RegisterModal
+                  onClose={closeActiveModal}
+                  isOpen={activeModal == "register"}
+                  handleRegistration={handleRegistration}
                 />
               }
             />
@@ -184,11 +237,6 @@ function App() {
           card={selectedCard}
           handleDeleteItem={handleDeleteItem}
           onClose={closeActiveModal}
-        />
-        <RegisterModal
-          onClose={closeActiveModal}
-          isOpen={activeModal == "register"}
-          handleRegistration={handleRegistration}
         />
       </CurrentTemperatureUnitContext.Provider>
     </div>
