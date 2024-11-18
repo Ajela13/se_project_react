@@ -15,7 +15,7 @@ import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 import { getItems, addItems, deleteItems } from "../../utils/api";
 import DeleteConfirmationModal from "../DeleteConfirmationModal/DeleteConfirmationModal";
-
+import * as auth from "../../utils/auth.js";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [weatherData, setWeatherData] = useState({
@@ -34,9 +34,9 @@ function App() {
 
   const navigate = useNavigate();
 
-  const handleRegistration = ({ name, email, password, avatar }) => {
+  const handleRegistration = ({ email, password, name, avatar }) => {
     auth
-      .register(name, password, email, avatar)
+      .register(email, password, name, avatar)
       .then(() => {
         setIsLoggedIn(true);
         closeActiveModal();
