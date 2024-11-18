@@ -42,7 +42,7 @@ function RegisterModal({ isOpen, onClose, handleRegistration }) {
         <input
           id="signUp-email"
           type="email"
-          value={setData.email}
+          value={data.email}
           className="modal__input"
           placeholder="Email"
           onChange={handleChange}
