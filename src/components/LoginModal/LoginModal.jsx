@@ -1,35 +1,38 @@
 import { useEffect, useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-function LoginModal({ isOpen, onClose }) {
-  const [email, setEmail] = useState("");
-  const [password, setpassword] = useState("");
+function LoginModal({ isOpen, onClose, handleLogin }) {
+  const [data, setData] = useState({
+    email: "",
+    password: "",
+  });
 
-  const handleEmailChange = (e) => setEmail(e.target.value);
-  const handlePasswordChange = (e) => setpassword(e.target.value);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+  console.log(data);
 
   useEffect(() => {
     if (isOpen) {
-      setEmail("");
-      setpassword("");
+      setData({ email: "", password: "" });
     }
   }, [isOpen]);
 
-  //   const handleSubmit = (e) => {
-  //     e.preventDefault();
-  //     // onAddItem({
-  //     //   name,
-  //     //   imageUrl,
-  //     //   weather,
-  //     // });
-  //   };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleLogin(data);
+  };
 
   return (
     <ModalWithForm
       title="Log in"
       buttonText="Log in"
       isOpen={isOpen}
-      //   onSubmit={handleSubmit}
+      onSubmit={handleSubmit}
       onClose={onClose}
       redirectText="or Sign Up"
     >
@@ -38,10 +41,11 @@ function LoginModal({ isOpen, onClose }) {
         <input
           id="login-email"
           type="email"
-          value={email}
+          value={data.email}
           className="modal__input"
           placeholder="Email"
-          onChange={handleEmailChange}
+          onChange={handleChange}
+          name="email"
         />
       </label>
 
@@ -51,9 +55,10 @@ function LoginModal({ isOpen, onClose }) {
           type="login-password"
           className="modal__input"
           id="password"
-          value={password}
+          value={data.password}
           placeholder="Password"
-          onChange={handlePasswordChange}
+          onChange={handleChange}
+          name="password"
         />
       </label>
     </ModalWithForm>
