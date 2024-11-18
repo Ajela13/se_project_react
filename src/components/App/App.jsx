@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import "./App.css";
 import { coordinates, APIkey } from "../../utils/constants";
 import Header from "../Header/Header";
@@ -10,13 +10,14 @@ import Profile from "../Profile/Profile";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import LoginModal from "../LoginModal/LoginModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 import { getItems, addItems, deleteItems } from "../../utils/api";
 import DeleteConfirmationModal from "../DeleteConfirmationModal/DeleteConfirmationModal";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [weatherData, setWeatherData] = useState({
     temperature: "",
     type: "",
@@ -30,6 +31,19 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
 
   const [clothingItems, setClothingItems] = useState([]);
+
+  const navigate = useNavigate();
+
+  const handleRegistration = ({ name, email, password, avatar }) => {
+    auth
+      .register(name, password, email, avatar)
+      .then(() => {
+        setIsLoggedIn(true);
+        closeActiveModal();
+        navigate("/profile");
+      })
+      .catch(console.error);
+  };
 
   const closeActiveModal = () => {
     setActiveModal("");
@@ -98,6 +112,13 @@ function App() {
       .catch(console.error);
   }, []);
 
+  useEffect(() => {
+    if (location.pathname === "/login") {
+      setActiveModal("Login");
+    } else {
+      setActiveModal("");
+    }
+  }, [location]);
   return (
     <div className="page">
       <CurrentTemperatureUnitContext.Provider
@@ -107,8 +128,8 @@ function App() {
           <Header
             handleAddClick={handleAddClick}
             weatherData={weatherData}
-            handleLoginClick={handleLoginClick}
-            handleRegisterClick={handleRegisterClick}
+            // handleLoginClick={handleLoginClick}
+            // handleRegisterClick={handleRegisterClick}
           />
           <Routes>
             <Route
@@ -133,6 +154,16 @@ function App() {
                 </ProtectedRoute>
               }
             />
+
+            <Route
+              path="/login"
+              element={
+                <LoginModal
+                  onClose={closeActiveModal}
+                  isOpen={activeModal == "Login"}
+                />
+              }
+            />
           </Routes>
 
           <Footer />
@@ -154,13 +185,10 @@ function App() {
           handleDeleteItem={handleDeleteItem}
           onClose={closeActiveModal}
         />
-        <LoginModal
-          onClose={closeActiveModal}
-          isOpen={activeModal == "Login"}
-        />
         <RegisterModal
           onClose={closeActiveModal}
           isOpen={activeModal == "register"}
+          handleRegistration={handleRegistration}
         />
       </CurrentTemperatureUnitContext.Provider>
     </div>
