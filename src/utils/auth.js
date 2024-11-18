@@ -1,7 +1,7 @@
 export const BASE_URL = "http://localhost:3001";
 
-export const register = (email, password, name, avatar) => {
-  console.log(JSON.stringify({ email, password, name, avatar }));
+export const register = (email, password, username, avatar) => {
+  console.log(JSON.stringify({ email, password, username, avatar }));
 
   return fetch(`${BASE_URL}/signup`, {
     method: "POST",
@@ -9,7 +9,7 @@ export const register = (email, password, name, avatar) => {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ name, avatar, email, password }),
+    body: JSON.stringify({ username, avatar, email, password }),
   }).then((res) => {
     return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
   });
