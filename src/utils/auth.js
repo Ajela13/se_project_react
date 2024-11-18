@@ -25,3 +25,22 @@ export const authorize = (email, password) => {
     return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
   });
 };
+
+export const checkToken = (token) => {
+  return fetch(`${BASE_URL}/users/me`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`, // Pass the token in the Authorization header
+    },
+  })
+    .then((res) => {
+      if (res.ok) {
+        return res.json(); // Return user data if the token is valid
+      }
+      return Promise.reject(`Error: ${res.status}`);
+    })
+    .catch((err) => {
+      console.error("Token validation failed:", err);
+    });
+};
