@@ -6,12 +6,6 @@ import CurrentUserContext from "../../contexts/CurrentUserContext";
 function ItemModal({ isOpen, card, onClose, openDeleteConfirmationModal }) {
   const { currentUser } = useContext(CurrentUserContext);
   const isOwn = card.owner === currentUser._id;
-
-  const itemDeleteButtonClassName = `item__delete-button ${
-    isOwn
-      ? " modal__delete item__delete-button_visible"
-      : "modal__delete item__delete-button_hidden"
-  }`;
   return (
     <Modal name="preview" onClose={onClose} isOpen={isOpen}>
       <div className="modal__preview-content modal__content_type_image">
@@ -27,8 +21,9 @@ function ItemModal({ isOpen, card, onClose, openDeleteConfirmationModal }) {
             <p className="modal__weather">Weather: {card.weather}</p>
           </div>
           <button
-            className={itemDeleteButtonClassName}
+            className="modal__delete"
             type="button"
+            hidden={!isOwn}
             onClick={() => openDeleteConfirmationModal(card)}
           >
             Delete item
