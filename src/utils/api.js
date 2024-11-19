@@ -4,6 +4,14 @@ function checkResponse(res) {
   return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
 }
 
+function getUserData(token) {
+  return fetch(`${baseUrl}/users/me`, {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  }).then(checkResponse);
+}
+
 function getItems() {
   return fetch(`${baseUrl}/items`).then(checkResponse);
 }
@@ -33,4 +41,4 @@ function deleteItems(id, token) {
   }).then(checkResponse);
 }
 
-export { getItems, addItems, deleteItems, checkResponse };
+export { getItems, addItems, deleteItems, checkResponse, getUserData };
