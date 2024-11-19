@@ -51,3 +51,11 @@
   line-height: 1.2;
   color: #ff4d00;
 }
+
+.item__delete-button_hidden {
+  visibility: hidden;
+}
+
+.item__delete-button_visible {
+  visibility: visible;
+}
