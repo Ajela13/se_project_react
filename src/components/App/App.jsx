@@ -73,7 +73,6 @@ function App() {
     setActiveModal("preview");
     setSelectedCard(card);
   };
-
   const handleAddClick = () => {
     setActiveModal("add-clothes");
   };
@@ -98,7 +97,8 @@ function App() {
   };
 
   const handleAddItemSubmit = ({ name, weather, imageUrl }) => {
-    addItems(name, imageUrl, weather)
+    const token = localStorage.getItem("jwt");
+    addItems(name, imageUrl, weather, token)
       .then((newItem) => {
         setClothingItems([newItem, ...clothingItems]);
       })
@@ -173,8 +173,8 @@ function App() {
             <Header
               handleAddClick={handleAddClick}
               weatherData={weatherData}
-              // handleLoginClick={handleLoginClick}
-              // handleRegisterClick={handleRegisterClick}
+              handleLoginClick={handleLoginClick}
+              handleRegisterClick={handleRegisterClick}
             />
             <Routes>
               <Route
@@ -195,6 +195,7 @@ function App() {
                       handleCardClick={handleCardClick}
                       handleAddClick={handleAddClick}
                       clothingItems={clothingItems}
+                      card={selectedCard}
                     />
                   </ProtectedRoute>
                 }
