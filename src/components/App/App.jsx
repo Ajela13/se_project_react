@@ -107,7 +107,8 @@ function App() {
   };
 
   const handleDeleteItem = (item) => {
-    deleteItems(item._id)
+    const token = localStorage.getItem("jwt");
+    deleteItems(item._id, token)
       .then(() => {
         setClothingItems(clothingItems.filter((card) => card._id !== item._id));
         closeActiveModal();
