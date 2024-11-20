@@ -1,10 +1,19 @@
 .sideBar {
   display: flex;
+  margin-top: 19px;
+  flex-direction: column;
+  gap: 8px;
 }
 
+.sideBar__user-info {
+  display: flex;
+  margin: 0 0 16px 0;
+}
 .sideBar__avatar {
   height: 56px;
   width: 56px;
+  border-radius: 50%;
+  background-color: transparent;
 }
 
 .sideBar__username {
@@ -12,5 +21,27 @@
   font-size: 20px;
   font-weight: 700;
   line-height: 1.2;
-  margin-left: 16px;
+  margin: 0 0 0 16px;
+  display: flex;
+  align-items: center;
+}
+
+.sideBar__update-profile {
+  font-family: Cabinet;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+  border: transparent;
+  display: flex;
+  align-items: start;
+}
+
+.sideBar__LogOut {
+  font-family: Cabinet;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+  border: transparent;
+  display: flex;
+  align-items: start;
 }
