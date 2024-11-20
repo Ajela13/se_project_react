@@ -52,10 +52,10 @@ function LoginModal({ isOpen, onClose, handleLogin }) {
       <label htmlFor="login-password" className="modal__label">
         Password
         <input
-          type="login-password"
-          className="modal__input"
-          id="password"
+          id="login-password"
+          type="password"
           value={data.password}
+          className="modal__input"
           placeholder="Password"
           onChange={handleChange}
           name="password"
