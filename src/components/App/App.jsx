@@ -10,6 +10,7 @@ import Profile from "../Profile/Profile";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import LoginModal from "../LoginModal/LoginModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
+import EditProfileModal from "../EditProfileModal/EditProfileModal.jsx";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
@@ -65,6 +66,9 @@ function App() {
         console.error("Login failed:", err); // Log errors for debugging
       });
   };
+
+  const handleUpdateProfile = ({ name, avatar }) => {};
+
   const closeActiveModal = () => {
     setActiveModal("");
   };
@@ -84,6 +88,10 @@ function App() {
 
   const handleLoginClick = () => {
     setActiveModal("Login");
+  };
+
+  const handleUpdateProfileClick = () => {
+    setActiveModal("update profile");
   };
 
   const handleRegisterClick = () => {
@@ -195,6 +203,7 @@ function App() {
                     <Profile
                       handleCardClick={handleCardClick}
                       handleAddClick={handleAddClick}
+                      handleUpdateProfileClick={handleUpdateProfileClick}
                       clothingItems={clothingItems}
                       card={selectedCard}
                     />
@@ -243,6 +252,11 @@ function App() {
             card={selectedCard}
             handleDeleteItem={handleDeleteItem}
             onClose={closeActiveModal}
+          />
+          <EditProfileModal
+            isOpen={activeModal == "update profile"}
+            onClose={closeActiveModal}
+            handleUpdateProfile={handleUpdateProfile}
           />
         </CurrentTemperatureUnitContext.Provider>
       </div>
