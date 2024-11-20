@@ -12,6 +12,17 @@ function getUserData(token) {
   }).then(checkResponse);
 }
 
+function updateUser(name, avatar, token) {
+  return fetch(`${baseUrl}/users/me`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`, // Pass the token in the Authorization header
+    },
+    body: JSON.stringify({ name, avatar }),
+  }).then(checkResponse);
+}
+
 function getItems() {
   return fetch(`${baseUrl}/items`).then(checkResponse);
 }
@@ -41,4 +52,11 @@ function deleteItems(id, token) {
   }).then(checkResponse);
 }
 
-export { getItems, addItems, deleteItems, checkResponse, getUserData };
+export {
+  getItems,
+  addItems,
+  deleteItems,
+  checkResponse,
+  getUserData,
+  updateUser,
+};
