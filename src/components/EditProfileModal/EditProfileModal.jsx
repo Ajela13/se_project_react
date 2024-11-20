@@ -3,8 +3,8 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 function LoginModal({ isOpen, onClose, handleUpdateProfile }) {
   const [data, setData] = useState({
-    email: "",
-    password: "",
+    name: "",
+    avatar: "",
   });
 
   const handleChange = (e) => {
