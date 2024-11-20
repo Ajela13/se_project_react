@@ -79,7 +79,7 @@ function RegisterModal({ isOpen, onClose, handleRegistration }) {
       <label htmlFor="signUp-avatar" className="modal__label">
         Avatar URL*
         <input
-          type="text"
+          type="url"
           className="modal__input"
           id="signUp-avatar"
           value={data.avatar}
