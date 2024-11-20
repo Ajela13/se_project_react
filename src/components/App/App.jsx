@@ -48,7 +48,6 @@ function App() {
       })
       .catch(console.error);
   };
-
   const handleLogin = ({ email, password }) => {
     auth
       .authorize(email, password)
@@ -67,7 +66,24 @@ function App() {
       });
   };
 
-  const handleUpdateProfile = ({ name, avatar }) => {};
+  const handleUpdateProfile = ({ name, avatar }) => {
+    const token = localStorage.getItem("jwt");
+    auth
+      .checkToken(token)
+      .then(() => {
+        api.updateUser(name, avatar, token);
+        closeActiveModal();
+        setUser((user) => ({
+          ...user,
+          name,
+          avatar,
+        }));
+      })
+      .catch((err) => {
+        console.error("Token validation failed:", err);
+        setIsLoggedIn(false);
+      });
+  };
 
   const closeActiveModal = () => {
     setActiveModal("");
