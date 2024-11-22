@@ -252,6 +252,7 @@ function App() {
                       handleUpdateProfileClick={handleUpdateProfileClick}
                       clothingItems={clothingItems}
                       card={selectedCard}
+                      onCardLike={handleCardLike}
                     />
                   </ProtectedRoute>
                 }
