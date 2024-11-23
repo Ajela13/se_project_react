@@ -66,6 +66,11 @@ function App() {
       });
   };
 
+  const handleSignOut = () => {
+    localStorage.removeItem("jwt");
+    navigate("/login");
+    setIsLoggedIn(false);
+  };
   const handleUpdateProfile = ({ name, avatar }) => {
     const token = localStorage.getItem("jwt");
     auth
@@ -253,6 +258,7 @@ function App() {
                       clothingItems={clothingItems}
                       card={selectedCard}
                       onCardLike={handleCardLike}
+                      handleSignOut={handleSignOut}
                     />
                   </ProtectedRoute>
                 }
