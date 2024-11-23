@@ -55,3 +55,19 @@
   font-weight: bold;
   font-size: 1.2rem;
 }
+
+.header__signup {
+  font-family: Cabinet;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.2;
+  border: transparent;
+}
+
+.header__login {
+  font-family: Cabinet;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.2;
+  border: transparent;
+}
