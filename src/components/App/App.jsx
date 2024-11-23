@@ -54,9 +54,17 @@ function App() {
       .then((res) => {
         if (res.token) {
           localStorage.setItem("jwt", res.token);
-          setIsLoggedIn(true);
-          closeActiveModal();
-          navigate("/profile");
+          auth
+            .checkToken(res.token)
+            .then((userData) => {
+              setUser(userData);
+              setIsLoggedIn(true);
+              closeActiveModal();
+              navigate("/profile");
+            })
+            .catch((err) => {
+              console.error("Failed to fetch user data:", err);
+            });
         } else {
           throw new Error("Authorization token not received");
         }
