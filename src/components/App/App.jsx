@@ -42,6 +42,7 @@ function App() {
     auth
       .register(email, password, name, avatar)
       .then(() => {
+        setUser({ email, password, name, avatar });
         setIsLoggedIn(true);
         closeActiveModal();
         navigate("/profile");
@@ -78,6 +79,7 @@ function App() {
     localStorage.removeItem("jwt");
     navigate("/login");
     setIsLoggedIn(false);
+    setUser("");
   };
   const handleUpdateProfile = ({ name, avatar }) => {
     const token = localStorage.getItem("jwt");
