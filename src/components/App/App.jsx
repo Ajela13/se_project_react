@@ -42,13 +42,31 @@ function App() {
     auth
       .register(email, password, name, avatar)
       .then(() => {
-        setUser({ email, password, name, avatar });
-        setIsLoggedIn(true);
-        closeActiveModal();
-        navigate("/profile");
+        return auth.authorize(email, password);
       })
-      .catch(console.error);
+      .then((res) => {
+        if (res.token) {
+          localStorage.setItem("jwt", res.token);
+          auth
+            .checkToken(res.token)
+            .then((userData) => {
+              setUser(userData);
+              setIsLoggedIn(true);
+              closeActiveModal();
+              navigate("/profile");
+            })
+            .catch((err) => {
+              console.error("Failed to fetch user data:", err);
+            });
+        } else {
+          throw new Error("Authorization token not received");
+        }
+      })
+      .catch((err) => {
+        console.error("Registration or Login failed:", err);
+      });
   };
+
   const handleLogin = ({ email, password }) => {
     auth
       .authorize(email, password)
