@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import "./Header.css";
 import logo from "../../assets/logo.svg";
-import avatar from "../../assets/avatar.png";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { useContext } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
@@ -35,7 +34,7 @@ function Header({
                 <p className="header__username">{currentUser.name} </p>
                 <img
                   src={currentUser.avatar}
-                  alt="Terrence Tegegne avatar"
+                  alt="avatar"
                   className="header__avatar"
                 />
               </div>
@@ -46,7 +45,21 @@ function Header({
 
       const placeholderLetter = currentUser?.name?.[0]?.toUpperCase() || "?";
       return (
-        <div className="header__user-placeholder">{placeholderLetter}</div>
+        <>
+          <button
+            onClick={handleAddClick}
+            type="button"
+            className="header__add-clothes-btn"
+          >
+            + Add clothes
+          </button>
+          <Link to="/profile" className="header__user">
+            <div className="header__user">
+              <p className="header__username">{currentUser.name} </p>
+              <p className="header__user-placeholder">{placeholderLetter}</p>
+            </div>
+          </Link>
+        </>
       );
     }
 
