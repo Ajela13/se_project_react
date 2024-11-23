@@ -57,7 +57,11 @@ function App() {
           auth
             .checkToken(res.token)
             .then((userData) => {
+<<<<<<< HEAD
               setUser(userData);
+=======
+              setUser(userData); // Update the currentUser state
+>>>>>>> 0a69ef1d060a55a71eba6f17918e1452795dc6b9
               setIsLoggedIn(true);
               closeActiveModal();
               navigate("/profile");
