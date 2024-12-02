@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-function RegisterModal({ isOpen, onClose, handleRegistration }) {
+function RegisterModal({
+  isOpen,
+  onClose,
+  handleRegistration,
+  handleLoginClick,
+}) {
   const [data, setData] = useState({
     name: "",
     email: "",
@@ -36,6 +41,8 @@ function RegisterModal({ isOpen, onClose, handleRegistration }) {
       onClose={onClose}
       redirectText="or Log in"
       onSubmit={handleSubmit}
+      redirectPath={"/login"}
+      clickHandler={handleLoginClick}
     >
       <label htmlFor="signUp-email" className="modal__label">
         Email*
