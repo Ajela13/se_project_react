@@ -85,3 +85,7 @@
   display: flex;
   align-items: center;
 }
+
+.modal__buttonredirect {
+  text-decoration: none;
+}
