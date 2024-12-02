@@ -40,6 +40,12 @@ export const checkToken = (token) => {
       if (res.ok) {
         return res.json(); // Return user data if the token is valid
       }
+      if (res.status === 401) {
+        console.error("Token expired or invalid. Redirecting to login...");
+        localStorage.removeItem("token"); // Remove the invalid access token
+        localStorage.removeItem("refreshToken"); // Optional: Remove refresh token if used
+        window.location.href = "/login";
+      }
       return Promise.reject(`Error: ${res.status}`);
     })
     .catch((err) => {
