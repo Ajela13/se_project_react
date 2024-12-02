@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import { useContext } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function LoginModal({ isOpen, onClose, handleUpdateProfile }) {
+  const { currentUser } = useContext(CurrentUserContext);
+
   const [data, setData] = useState({
     name: "",
     avatar: "",
@@ -17,10 +21,13 @@ function LoginModal({ isOpen, onClose, handleUpdateProfile }) {
   console.log(data);
 
   useEffect(() => {
-    if (isOpen) {
-      setData({ name: "", avatar: "" });
+    if (isOpen && currentUser) {
+      setData({
+        name: currentUser.name || "",
+        avatar: currentUser.avatar || "",
+      });
     }
-  }, [isOpen]);
+  }, [isOpen, currentUser]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -42,7 +49,6 @@ function LoginModal({ isOpen, onClose, handleUpdateProfile }) {
           type="text"
           value={data.name}
           className="modal__input"
-          placeholder="name"
           onChange={handleChange}
           name="name"
         />
