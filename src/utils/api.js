@@ -7,6 +7,7 @@ function checkResponse(res) {
 function getUserData(token) {
   return fetch(`${baseUrl}/users/me`, {
     headers: {
+      "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
     },
   }).then(checkResponse);
@@ -24,7 +25,11 @@ function updateUser(name, avatar, token) {
 }
 
 function getItems() {
-  return fetch(`${baseUrl}/items`).then(checkResponse);
+  return fetch(`${baseUrl}/items`, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then(checkResponse);
 }
 
 function addItems(name, imageUrl, weather, token) {
