@@ -44,16 +44,19 @@
 }
 
 .header__user-placeholder {
-  width: 40px;
   height: 40px;
+  width: 40px;
   border-radius: 50%;
-  background-color: transparent;
+  border: #00000080 1px solid;
+  background-color: #00000033;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgb(133, 133, 133);
-  font-weight: bold;
-  font-size: 1.2rem;
+  color: #ffffff;
+  font-family: Cabinet Grotesk;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2px;
 }
 
 .header__signup {

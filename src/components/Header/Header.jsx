@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import "./Header.css";
 import logo from "../../assets/logo.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 function Header({
   handleAddClick,
@@ -10,40 +10,28 @@ function Header({
   handleLoginClick,
   handleRegisterClick,
 }) {
+  const [imageError, setImageError] = useState(false);
+
+  const handleImageError = () => {
+    setImageError(true);
+  };
+
+  const handleImageLoad = () => {
+    setImageError(false);
+  };
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
   });
 
   const { currentUser, isLoggedIn } = useContext(CurrentUserContext);
+  const placeholderLetter = currentUser?.name?.[0]?.toUpperCase() || "?";
+  useEffect(() => {
+    setImageError(false);
+  }, [currentUser.avatar]);
 
   const renderUserInfo = () => {
     if (isLoggedIn) {
-      if (currentUser?.avatar) {
-        return (
-          <>
-            <button
-              onClick={handleAddClick}
-              type="button"
-              className="header__add-clothes-btn"
-            >
-              + Add clothes
-            </button>
-            <Link to="/profile" className="header__user">
-              <div className="header__user">
-                <p className="header__username">{currentUser.name} </p>
-                <img
-                  src={currentUser.avatar}
-                  alt="avatar"
-                  className="header__avatar"
-                />
-              </div>
-            </Link>
-          </>
-        );
-      }
-
-      const placeholderLetter = currentUser?.name?.[0]?.toUpperCase() || "?";
       return (
         <>
           <button
@@ -56,7 +44,17 @@ function Header({
           <Link to="/profile" className="header__user">
             <div className="header__user">
               <p className="header__username">{currentUser.name} </p>
-              <p className="header__user-placeholder">{placeholderLetter}</p>
+              {imageError ? (
+                <p className="header__user-placeholder">{placeholderLetter}</p>
+              ) : (
+                <img
+                  src={currentUser.avatar}
+                  alt="avatar"
+                  className="header__avatar"
+                  onError={handleImageError}
+                  onLoad={handleImageLoad}
+                />
+              )}
             </div>
           </Link>
         </>
