@@ -26,7 +26,7 @@ function ModalWithForm({
             </button>
             <Link to={redirectPath} className="modal__buttonredirect">
               <button
-                hidden={title === !"Log in" && title === !"register"}
+                hidden={!redirectText}
                 className="modal__redirect"
                 onClick={clickHandler}
               >
