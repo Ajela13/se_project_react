@@ -299,6 +299,7 @@ function App() {
                     onClose={closeActiveModal}
                     isOpen={activeModal == "Login"}
                     handleLogin={handleLogin}
+                    handleRegisterClick={handleRegisterClick}
                   />
                 }
               />
@@ -310,6 +311,7 @@ function App() {
                     onClose={closeActiveModal}
                     isOpen={activeModal == "register"}
                     handleRegistration={handleRegistration}
+                    handleLoginClick={handleLoginClick}
                   />
                 }
               />
