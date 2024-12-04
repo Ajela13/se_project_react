@@ -1,3 +1,4 @@
+import { checkResponse } from "./api";
 export const BASE_URL = "http://localhost:3001";
 
 export const register = (email, password, name, avatar) => {
@@ -10,9 +11,7 @@ export const register = (email, password, name, avatar) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ name, avatar, email, password }),
-  }).then((res) => {
-    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-  });
+  }).then(checkResponse);
 };
 
 export const authorize = (email, password) => {
@@ -23,9 +22,7 @@ export const authorize = (email, password) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ email, password }),
-  }).then((res) => {
-    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-  });
+  }).then(checkResponse);
 };
 
 export const checkToken = (token) => {
@@ -35,20 +32,16 @@ export const checkToken = (token) => {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`, // Pass the token in the Authorization header
     },
-  })
-    .then((res) => {
-      if (res.ok) {
-        return res.json(); // Return user data if the token is valid
-      }
-      if (res.status === 401) {
-        console.error("Token expired or invalid. Redirecting to login...");
-        localStorage.removeItem("token"); // Remove the invalid access token
-        localStorage.removeItem("refreshToken"); // Optional: Remove refresh token if used
-        window.location.href = "/login";
-      }
-      return Promise.reject(`Error: ${res.status}`);
-    })
-    .catch((err) => {
-      console.error("Token validation failed:", err);
-    });
+  }).then((res) => {
+    if (res.ok) {
+      return res.json();
+    }
+    if (res.status === 401) {
+      console.error("Token expired or invalid. Redirecting to login...");
+      localStorage.removeItem("token");
+      localStorage.removeItem("refreshToken");
+      window.location.href = "/login";
+    }
+    return Promise.reject(`Error: ${res.status}`);
+  });
 };
