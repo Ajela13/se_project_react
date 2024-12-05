@@ -63,16 +63,13 @@ function Header({
 
     return (
       <div className="header__credentials">
-        <Link to="/signup">
-          <button className="header__signup" onClick={handleRegisterClick}>
-            Singn Up
-          </button>
-        </Link>
-        <Link to="/login">
-          <button className="header__login" onClick={handleLoginClick}>
-            Log in
-          </button>
-        </Link>
+        <button className="header__signup" onClick={handleRegisterClick}>
+          Singn Up
+        </button>
+
+        <button className="header__login" onClick={handleLoginClick}>
+          Log in
+        </button>
       </div>
     );
   };

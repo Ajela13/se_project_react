@@ -35,7 +35,6 @@ function LoginModal({ isOpen, onClose, handleLogin, handleRegisterClick }) {
       onSubmit={handleSubmit}
       onClose={onClose}
       redirectText="or Sign Up"
-      redirectPath={"/signup"}
       clickHandler={handleRegisterClick}
     >
       <label htmlFor="login-email" className="modal__label">

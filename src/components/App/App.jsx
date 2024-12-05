@@ -95,7 +95,6 @@ function App() {
 
   const handleSignOut = () => {
     localStorage.removeItem("jwt");
-    navigate("/login");
     setIsLoggedIn(false);
     setUser("");
   };
@@ -219,16 +218,6 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (location.pathname === "/login") {
-      setActiveModal("Login");
-    } else if (location.pathname === "/signup") {
-      setActiveModal("register");
-    } else {
-      closeActiveModal();
-    }
-  }, [location]);
-
-  useEffect(() => {
     const token = localStorage.getItem("jwt");
 
     if (token) {
@@ -290,30 +279,6 @@ function App() {
                   </ProtectedRoute>
                 }
               />
-
-              <Route
-                path="/login"
-                element={
-                  <LoginModal
-                    onClose={closeActiveModal}
-                    isOpen={activeModal == "Login"}
-                    handleLogin={handleLogin}
-                    handleRegisterClick={handleRegisterClick}
-                  />
-                }
-              />
-
-              <Route
-                path="/signup"
-                element={
-                  <RegisterModal
-                    onClose={closeActiveModal}
-                    isOpen={activeModal == "register"}
-                    handleRegistration={handleRegistration}
-                    handleLoginClick={handleLoginClick}
-                  />
-                }
-              />
             </Routes>
 
             <Footer />
@@ -339,6 +304,19 @@ function App() {
             isOpen={activeModal == "update profile"}
             onClose={closeActiveModal}
             handleUpdateProfile={handleUpdateProfile}
+          />
+          <LoginModal
+            onClose={closeActiveModal}
+            isOpen={activeModal == "Login"}
+            handleLogin={handleLogin}
+            handleRegisterClick={handleRegisterClick}
+          />
+
+          <RegisterModal
+            onClose={closeActiveModal}
+            isOpen={activeModal == "register"}
+            handleRegistration={handleRegistration}
+            handleLoginClick={handleLoginClick}
           />
         </CurrentTemperatureUnitContext.Provider>
       </div>

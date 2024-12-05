@@ -41,7 +41,6 @@ function RegisterModal({
       onClose={onClose}
       redirectText="or Log in"
       onSubmit={handleSubmit}
-      redirectPath={"/login"}
       clickHandler={handleLoginClick}
     >
       <label htmlFor="signUp-email" className="modal__label">

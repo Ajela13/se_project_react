@@ -1,6 +1,5 @@
 import "./ModalWithForm.css";
 import Modal from "../Modal/Modal";
-import { Link } from "react-router-dom";
 
 function ModalWithForm({
   children,
@@ -10,7 +9,6 @@ function ModalWithForm({
   onClose,
   onSubmit,
   redirectText,
-  redirectPath,
   clickHandler,
 }) {
   return (
@@ -24,15 +22,14 @@ function ModalWithForm({
             <button type="submit" className="modal__submit">
               {buttonText}
             </button>
-            <Link to={redirectPath} className="modal__buttonredirect">
-              <button
-                hidden={!redirectText}
-                className="modal__redirect"
-                onClick={clickHandler}
-              >
-                {redirectText}
-              </button>
-            </Link>
+
+            <button
+              hidden={!redirectText}
+              className="modal__redirect"
+              onClick={clickHandler}
+            >
+              {redirectText}
+            </button>
           </div>
         </form>
       </div>
