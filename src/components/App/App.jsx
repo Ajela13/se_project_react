@@ -100,9 +100,10 @@ function App() {
   };
   const handleUpdateProfile = ({ name, avatar }) => {
     const token = localStorage.getItem("jwt");
-    auth
+
+    api
+      .updateUser(name, avatar, token)
       .then(() => {
-        api.updateUser(name, avatar, token);
         closeActiveModal();
         setUser((user) => ({
           ...user,
