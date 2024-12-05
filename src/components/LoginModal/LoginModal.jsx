@@ -14,7 +14,6 @@ function LoginModal({ isOpen, onClose, handleLogin, handleRegisterClick }) {
       [name]: value,
     }));
   };
-  console.log(data);
 
   useEffect(() => {
     if (isOpen) {

@@ -18,7 +18,6 @@ function LoginModal({ isOpen, onClose, handleUpdateProfile }) {
       [name]: value,
     }));
   };
-  console.log(data);
 
   useEffect(() => {
     if (isOpen && currentUser) {

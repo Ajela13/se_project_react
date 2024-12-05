@@ -21,7 +21,6 @@ function RegisterModal({
       [name]: value,
     }));
   };
-  console.log(data);
   useEffect(() => {
     if (isOpen) {
       setData({ name: "", email: "", password: "", avatar: "" });
