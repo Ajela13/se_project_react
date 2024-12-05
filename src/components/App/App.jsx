@@ -276,6 +276,7 @@ function App() {
                       card={selectedCard}
                       onCardLike={handleCardLike}
                       handleSignOut={handleSignOut}
+                      isLoggedIn={isLoggedIn}
                     />
                   </ProtectedRoute>
                 }
