@@ -21,7 +21,7 @@ import * as api from "../../utils/api.js";
 import CurrentUserContext from "../../contexts/CurrentUserContext.jsx";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [currentUser, setUser] = useState("");
+  const [currentUser, setUser] = useState({});
   const [weatherData, setWeatherData] = useState({
     temperature: "",
     type: "",
