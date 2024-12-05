@@ -102,7 +102,6 @@ function App() {
   const handleUpdateProfile = ({ name, avatar }) => {
     const token = localStorage.getItem("jwt");
     auth
-      .checkToken(token)
       .then(() => {
         api.updateUser(name, avatar, token);
         closeActiveModal();
@@ -144,7 +143,7 @@ function App() {
               cards.map((item) => (item._id === id ? updatedCard : item))
             );
           })
-          .catch((err) => console.log(err));
+          .catch(console.error);
   };
 
   const closeActiveModal = () => {
@@ -225,7 +224,7 @@ function App() {
     } else if (location.pathname === "/signup") {
       setActiveModal("register");
     } else {
-      setActiveModal("");
+      closeActiveModal();
     }
   }, [location]);
 
