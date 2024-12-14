@@ -1,7 +1,15 @@
 import { useEffect, useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import { useContext } from "react";
+import { ModalContext } from "../../contexts/ModalContext";
+import AuthHandler from "../../handlers/AuthHandler";
 
-function LoginModal({ isOpen, onClose, handleLogin, handleRegisterClick }) {
+function LoginModal({ isOpen }) {
+  const { handleLoginSubmit } = AuthHandler();
+  const { handleRegisterClick, closeActiveModal } = useContext(ModalContext);
+
+  const {} = useContext(ModalContext);
+
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -23,7 +31,7 @@ function LoginModal({ isOpen, onClose, handleLogin, handleRegisterClick }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleLogin(data);
+    handleLoginSubmit(data);
   };
 
   return (
@@ -32,7 +40,6 @@ function LoginModal({ isOpen, onClose, handleLogin, handleRegisterClick }) {
       buttonText="Log in"
       isOpen={isOpen}
       onSubmit={handleSubmit}
-      onClose={onClose}
       redirectText="or Sign Up"
       clickHandler={handleRegisterClick}
     >

@@ -3,19 +3,17 @@ import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
 import { useContext } from "react";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
-
-function Main({
-  weatherData,
-  handleCardClick,
-  clothingItems,
-  onCardLike,
-  isLoggedIn,
-}) {
+import { WeatherContext } from "../../contexts/WeatherContext";
+import { ClothingItemsContext } from "../../contexts/ClothingItemsContext";
+function Main() {
   const { currentTemperature } = useContext(CurrentTemperatureUnitContext);
+  const { weatherData } = useContext(WeatherContext);
+  const { clothingItems } = useContext(ClothingItemsContext);
+
   return (
     <main className="main">
       <div className="main__content">
-        <WeatherCard weatherData={weatherData} />
+        <WeatherCard />
         <p className="main__temperature">
           Today is{" "}
           {currentTemperature === "F"
@@ -29,15 +27,7 @@ function Main({
               return item.weather === weatherData.type;
             })
             .map((item) => {
-              return (
-                <ItemCard
-                  key={item._id}
-                  item={item}
-                  onCardClick={handleCardClick}
-                  onCardLike={onCardLike}
-                  isLoggedIn={isLoggedIn}
-                />
-              );
+              return <ItemCard key={item._id} item={item} />;
             })}
         </ul>
       </div>

@@ -1,10 +1,16 @@
 import { useEffect, useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useContext } from "react";
-import CurrentUserContext from "../../contexts/CurrentUserContext";
+import { ModalContext } from "../../contexts/ModalContext";
+import ProfileHandler from "../../handlers/ProfileHandler";
+import { AuthContext } from "../../contexts/AuthContext";
 
-function LoginModal({ isOpen, onClose, handleUpdateProfile }) {
-  const { currentUser } = useContext(CurrentUserContext);
+function LoginModal({ isOpen }) {
+  const { handleUpdateProfile } = ProfileHandler();
+
+  const { closeActiveModal } = useContext(ModalContext);
+
+  const { currentUser } = useContext(AuthContext);
 
   const [data, setData] = useState({
     name: "",
@@ -39,7 +45,7 @@ function LoginModal({ isOpen, onClose, handleUpdateProfile }) {
       buttonText="Save changes"
       isOpen={isOpen}
       onSubmit={handleSubmit}
-      onClose={onClose}
+      onClose={closeActiveModal}
     >
       <label htmlFor="update-name" className="modal__label">
         Name *

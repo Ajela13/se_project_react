@@ -1,19 +1,25 @@
 import "./ItemCard.css";
 import { useContext } from "react";
-import CurrentUserContext from "../../contexts/CurrentUserContext";
+import ItemHandler from "../../handlers/ItemHandler";
+import { ModalContext } from "../../contexts/ModalContext";
+import { AuthContext } from "../../contexts/AuthContext";
 
-function ItemCard({ item, onCardClick, onCardLike, isLoggedIn }) {
-  const { currentUser } = useContext(CurrentUserContext);
+function ItemCard({ item }) {
+  const { currentUser, isLoggedIn } = useContext(AuthContext);
+
+  const { handleCardClick } = useContext(ModalContext);
+  const { handleItemLike } = ItemHandler();
+
   const isLiked = item.likes.includes(currentUser._id);
   const cardLikeButtonName = isLiked
     ? "card__like-btn-active"
     : "card__like-btn";
 
-  const handleCardClick = () => {
-    onCardClick(item);
+  const onCardClick = () => {
+    handleCardClick(item);
   };
-  const handleLike = () => {
-    onCardLike({ id: item._id, isLiked });
+  const OnCardLike = () => {
+    handleItemLike({ id: item._id, isLiked });
   };
   return (
     <li className="card">
@@ -21,13 +27,13 @@ function ItemCard({ item, onCardClick, onCardLike, isLoggedIn }) {
         <h2 className="card__name">{item.name}</h2>
         <button
           className={cardLikeButtonName}
-          onClick={handleLike}
+          onClick={OnCardLike}
           hidden={!isLoggedIn}
         ></button>
       </div>
 
       <img
-        onClick={handleCardClick}
+        onClick={onCardClick}
         className="card__image"
         src={item.imageUrl}
         alt={item.name}

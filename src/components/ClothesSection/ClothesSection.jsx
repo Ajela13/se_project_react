@@ -1,16 +1,14 @@
 import "./ClothesSection.css";
 import ItemCard from "../ItemCard/ItemCard";
 import { useContext } from "react";
-import CurrentUserContext from "../../contexts/CurrentUserContext";
+import { ModalContext } from "../../contexts/ModalContext";
+import { ClothingItemsContext } from "../../contexts/ClothingItemsContext";
+import { AuthContext } from "../../contexts/AuthContext";
 
-function ClothesSection({
-  handleCardClick,
-  clothingItems,
-  handleAddClick,
-  onCardLike,
-  isLoggedIn,
-}) {
-  const { currentUser } = useContext(CurrentUserContext);
+function ClothesSection() {
+  const { currentUser } = useContext(AuthContext);
+  const { handleAddClick } = useContext(ModalContext);
+  const { clothingItems } = useContext(ClothingItemsContext);
 
   return (
     <div className="clothesSection">
@@ -24,15 +22,7 @@ function ClothesSection({
         {clothingItems
           .filter((item) => item.owner === currentUser._id)
           .map((item) => {
-            return (
-              <ItemCard
-                key={item._id}
-                item={item}
-                onCardClick={handleCardClick}
-                onCardLike={onCardLike}
-                isLoggedIn={isLoggedIn}
-              />
-            );
+            return <ItemCard key={item._id} item={item} />;
           })}
       </ul>
     </div>

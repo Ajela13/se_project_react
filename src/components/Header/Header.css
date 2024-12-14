@@ -59,6 +59,10 @@
   line-height: 1.2px;
 }
 
+.header__user-link {
+  text-decoration: none;
+}
+
 .header__signup {
   font-family: Cabinet;
   font-weight: 700;

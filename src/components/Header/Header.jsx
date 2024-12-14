@@ -3,15 +3,16 @@ import "./Header.css";
 import logo from "../../assets/logo.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { useContext, useState, useEffect } from "react";
-import CurrentUserContext from "../../contexts/CurrentUserContext";
-function Header({
-  handleAddClick,
-  weatherData,
-  handleLoginClick,
-  handleRegisterClick,
-}) {
-  const [imageError, setImageError] = useState(false);
+import { ModalContext } from "../../contexts/ModalContext";
+import { WeatherContext } from "../../contexts/WeatherContext";
+import { AuthContext } from "../../contexts/AuthContext";
 
+function Header() {
+  const { currentUser, isLoggedIn } = useContext(AuthContext);
+  const [imageError, setImageError] = useState(false);
+  const { handleAddClick, handleLoginClick, handleRegisterClick } =
+    useContext(ModalContext);
+  const { weatherData } = useContext(WeatherContext);
   const handleImageError = () => {
     setImageError(true);
   };
@@ -24,7 +25,6 @@ function Header({
     day: "numeric",
   });
 
-  const { currentUser, isLoggedIn } = useContext(CurrentUserContext);
   const placeholderLetter = currentUser?.name?.[0]?.toUpperCase() || "?";
   useEffect(() => {
     setImageError(false);
@@ -41,7 +41,7 @@ function Header({
           >
             + Add clothes
           </button>
-          <Link to="/profile" className="header__user">
+          <Link to="/profile" className="header__user-link">
             <div className="header__user">
               <p className="header__username">{currentUser.name} </p>
               {imageError ? (
@@ -64,7 +64,7 @@ function Header({
     return (
       <div className="header__credentials">
         <button className="header__signup" onClick={handleRegisterClick}>
-          Singn Up
+          Sing Up
         </button>
 
         <button className="header__login" onClick={handleLoginClick}>

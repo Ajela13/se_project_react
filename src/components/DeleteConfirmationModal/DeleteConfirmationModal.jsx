@@ -1,12 +1,17 @@
 import Modal from "../Modal/Modal";
 import "./DeleteConfirmationModal.css";
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/AuthContext";
+import { ModalContext } from "../../contexts/ModalContext";
 
-function DeleteConfirmationModal({ handleDeleteItem, card, onClose, isOpen }) {
+function DeleteConfirmationModal({ isOpen }) {
+  const { handleDeleteItem } = useContext(AuthContext);
+  const { closeActiveModal, selectedCard } = useContext(ModalContext);
   return (
-    <Modal name="confirmation" onClose={onClose} isOpen={isOpen}>
+    <Modal name="confirmation" onClose={closeActiveModal} isOpen={isOpen}>
       <div className="modal__confirmation-content ">
         <button
-          onClick={onClose}
+          onClick={closeActiveModal}
           type="button"
           className="modal__close-confirmation"
         ></button>
@@ -18,7 +23,7 @@ function DeleteConfirmationModal({ handleDeleteItem, card, onClose, isOpen }) {
           className="modal__confirmation-delete"
           type="button"
           onClick={() => {
-            handleDeleteItem(card);
+            handleDeleteItem(selectedCard);
           }}
         >
           Yes, delete item
@@ -26,7 +31,7 @@ function DeleteConfirmationModal({ handleDeleteItem, card, onClose, isOpen }) {
         <button
           className="modal__confirmation-cancel"
           type="button"
-          onClick={onClose}
+          onClick={closeActiveModal}
         >
           Cancel
         </button>

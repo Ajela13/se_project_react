@@ -1,16 +1,21 @@
 import Modal from "../Modal/Modal";
 import "./ItemModal.css";
 import { useContext } from "react";
-import CurrentUserContext from "../../contexts/CurrentUserContext";
+import { ModalContext } from "../../contexts/ModalContext";
+import { ClothingItemsContext } from "../../contexts/ClothingItemsContext";
+import { AuthContext } from "../../contexts/AuthContext";
 
-function ItemModal({ isOpen, card, onClose, openDeleteConfirmationModal }) {
-  const { currentUser } = useContext(CurrentUserContext);
+function ItemModal({ isOpen }) {
+  const { currentUser } = useContext(AuthContext);
+  const { closeActiveModal, handleConfirmationDeleteClick, selectedCard } =
+    useContext(ModalContext);
+  const card = selectedCard;
   const isOwn = card.owner === currentUser._id;
   return (
-    <Modal name="preview" onClose={onClose} isOpen={isOpen}>
+    <Modal name="preview" onClose={closeActiveModal} isOpen={isOpen}>
       <div className="modal__preview-content modal__content_type_image">
         <button
-          onClick={onClose}
+          onClick={closeActiveModal}
           type="button"
           className="modal__close-preview"
         ></button>
@@ -24,7 +29,7 @@ function ItemModal({ isOpen, card, onClose, openDeleteConfirmationModal }) {
             className="modal__delete"
             type="button"
             hidden={!isOwn}
-            onClick={() => openDeleteConfirmationModal(card)}
+            onClick={() => handleConfirmationDeleteClick(card)}
           >
             Delete item
           </button>{" "}

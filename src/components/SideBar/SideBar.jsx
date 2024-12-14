@@ -1,9 +1,10 @@
 import "./SideBar.css";
 import { useContext, useState, useEffect } from "react";
-import CurrentUserContext from "../../contexts/CurrentUserContext";
-
-function SideBar({ handleUpdateProfileClick, handleSignOut }) {
-  const { currentUser } = useContext(CurrentUserContext);
+import { ModalContext } from "../../contexts/ModalContext";
+import { AuthContext } from "../../contexts/AuthContext";
+function SideBar() {
+  const { handleUpdateProfileClick } = useContext(ModalContext);
+  const { handleSignOut, currentUser } = useContext(AuthContext);
   const [imageError, setImageError] = useState(false);
 
   const handleImageError = () => {

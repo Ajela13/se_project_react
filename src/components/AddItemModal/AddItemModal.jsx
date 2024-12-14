@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import ItemHandler from "../../handlers/ItemHandler";
 
-function AddItemModal({ isOpen, onAddItem, onClose }) {
+const AddItemModal = React.memo(({ isOpen }) => {
+  const { handleAddItemSubmit } = ItemHandler();
   const [name, setName] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [weather, setWeather] = useState("");
@@ -20,7 +22,7 @@ function AddItemModal({ isOpen, onAddItem, onClose }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAddItem({
+    handleAddItemSubmit({
       name,
       imageUrl,
       weather,
@@ -33,7 +35,6 @@ function AddItemModal({ isOpen, onAddItem, onClose }) {
       buttonText="Add garment"
       isOpen={isOpen}
       onSubmit={handleSubmit}
-      onClose={onClose}
     >
       <label htmlFor="name" className="modal__label">
         Name
@@ -100,6 +101,6 @@ function AddItemModal({ isOpen, onAddItem, onClose }) {
       </fieldset>
     </ModalWithForm>
   );
-}
+});
 
 export default AddItemModal;

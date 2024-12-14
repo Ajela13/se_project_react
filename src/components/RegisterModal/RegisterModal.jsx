@@ -1,12 +1,11 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import AuthHandler from "../../handlers/AuthHandler";
+import { ModalContext } from "../../contexts/ModalContext";
 
-function RegisterModal({
-  isOpen,
-  onClose,
-  handleRegistration,
-  handleLoginClick,
-}) {
+function RegisterModal({ isOpen }) {
+  const { handleRegistration } = AuthHandler();
+  const { handleLoginClick } = useContext(ModalContext);
   const [data, setData] = useState({
     name: "",
     email: "",
@@ -37,7 +36,6 @@ function RegisterModal({
       title="Sign up"
       buttonText="Sign up"
       isOpen={isOpen}
-      onClose={onClose}
       redirectText="or Log in"
       onSubmit={handleSubmit}
       clickHandler={handleLoginClick}
