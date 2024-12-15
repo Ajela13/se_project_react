@@ -27,7 +27,7 @@ function Main() {
               return item.weather === weatherData.type;
             })
             .map((item) => {
-              return <ItemCard key={item._id} item={item} />;
+              return <ItemCard item={item} />;
             })}
         </ul>
       </div>
