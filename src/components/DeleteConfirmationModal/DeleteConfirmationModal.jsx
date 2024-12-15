@@ -1,11 +1,11 @@
 import Modal from "../Modal/Modal";
 import "./DeleteConfirmationModal.css";
 import { useContext } from "react";
-import { AuthContext } from "../../contexts/AuthContext";
+import { ClothingItemsContext } from "../../contexts/ClothingItemsContext";
 import { ModalContext } from "../../contexts/ModalContext";
 
 function DeleteConfirmationModal({ isOpen }) {
-  const { handleDeleteItem } = useContext(AuthContext);
+  const { handleDeleteItem } = useContext(ClothingItemsContext);
   const { closeActiveModal, selectedCard } = useContext(ModalContext);
   return (
     <Modal name="confirmation" onClose={closeActiveModal} isOpen={isOpen}>
