@@ -22,7 +22,7 @@ function ClothesSection() {
         {clothingItems
           .filter((item) => item.owner === currentUser._id)
           .map((item) => {
-            return <ItemCard item={item} />;
+            return <ItemCard key={item._id} item={item} />;
           })}
       </ul>
     </div>
