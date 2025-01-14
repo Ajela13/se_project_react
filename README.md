@@ -3,7 +3,8 @@
 What to Wear is a React + Vite project that helps users decide what to wear based on the current temperature in their location. By utilizing the [OpenWeatherMap API](https://openweathermap.org/), the app displays the temperature and suggests clothing options based on the weather conditions. Users can also add or remove clothing items according to their preferences and the weather.
 
 [backend repository](https://github.com/Ajela13/se_project_express)
-[Domain name](https://wtwr.casepractice.com)
+[frontend Domain name](https://wtwr.casepractice.com)
+[backend Domain name](https://api.wtwr.casepractice.com)
 
 **Features**
 
