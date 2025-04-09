@@ -1,4 +1,4 @@
-const baseUrl = "https://api.wtwr.casepractice.com";
+const baseUrl = "https://se-project-express-9nel.onrender.com";
 
 function checkResponse(res) {
   return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
