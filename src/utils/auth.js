@@ -1,7 +1,7 @@
 import { checkResponse } from "./api";
 export const BASE_URL =
   process.env.NODE_ENV === "production"
-    ? "https://api.wtwr.casepractice.com"
+    ? "https://se-project-express-9nel.onrender.com"
     : "http://localhost:3001";
 
 export const register = (email, password, name, avatar) => {
